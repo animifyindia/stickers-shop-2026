@@ -20,7 +20,6 @@ header {
   font-size: 22px;
 }
 
-/* Cart icon */
 .cart {
   position: fixed;
   top: 15px;
@@ -60,7 +59,6 @@ button {
   cursor: pointer;
 }
 
-/* Payment Section */
 .payment {
   text-align: center;
   padding: 20px;
@@ -70,6 +68,7 @@ button {
   width: 200px;
 }
 </style>
+
 </head>
 
 <body>
@@ -78,9 +77,9 @@ button {
 
 <div class="cart">🛒</div>
 
+<!-- PRODUCTS -->
 <div class="products">
 
-  <!-- Dragon Ball -->
   <div class="card">
     <img src="https://i.ibb.co/YFRpvLKc/adb89cf12dfbc6d449fcdc4aa385372c.jpg">
     <p>Goku Sticker</p>
@@ -93,21 +92,18 @@ button {
     <button onclick="buy()">Buy</button>
   </div>
 
-  <!-- Naruto -->
   <div class="card">
     <img src="https://i.ibb.co/Cp6H8kRC/130c104307ff0233f922aecb22e33e7d.jpg">
     <p>Naruto Sticker</p>
     <button onclick="buy()">Buy</button>
   </div>
 
-  <!-- Demon Slayer -->
   <div class="card">
     <img src="https://i.ibb.co/j9ryDrDn/4492148603354e720a9962176a86ecc2.jpg">
     <p>Tanjiro Sticker</p>
     <button onclick="buy()">Buy</button>
   </div>
 
-  <!-- Solo Leveling -->
   <div class="card">
     <img src="https://i.ibb.co/bjxBp4J0/2b31dabe7651c13d5ca591c56013da92.jpg">
     <p>Sung Jin Woo</p>
@@ -116,12 +112,19 @@ button {
 
 </div>
 
+<!-- ADD STICKER -->
+<div style="padding:15px;">
+  <input id="img" placeholder="Image Link">
+  <input id="name" placeholder="Sticker Name">
+  <button onclick="addSticker()">Add Sticker</button>
+</div>
+
+<!-- PAYMENT -->
 <div class="payment">
   <h2>💸 Payment</h2>
 
   <p>UPI ID: 9455104193@axl</p>
 
-  <!-- QR Code -->
   <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9455104193@axl&pn=StickersShop">
 
   <br><br>
@@ -129,12 +132,31 @@ button {
   <a href="upi://pay?pa=9455104193@axl&pn=StickersShop">
     <button>Pay Now</button>
   </a>
-
 </div>
 
 <script>
 function buy() {
   alert("Order confirm karne ke liye UPI se payment karein");
+}
+
+function addSticker() {
+  let img = document.getElementById("img").value;
+  let name = document.getElementById("name").value;
+
+  if(img === "" || name === "") {
+    alert("Image aur name dono daalo!");
+    return;
+  }
+
+  let card = `
+    <div class="card">
+      <img src="${img}">
+      <p>${name}</p>
+      <button onclick="buy()">Buy</button>
+    </div>
+  `;
+
+  document.querySelector(".products").innerHTML += card;
 }
 </script>
 
